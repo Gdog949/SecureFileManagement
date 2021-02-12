@@ -1,0 +1,63 @@
+//By Giancarlo Barrientes
+//and 
+//https://stackabuse.com/java-list-files-in-a-directory/
+//program to see directory contents kinda like "ls" for ubuntu and windows
+import java.util.Scanner;	
+import java.io.File;
+
+public class FolderContents {
+
+	private Scanner input = new Scanner(System.in);
+	private boolean loop = false;
+	private String choice = null;
+	public void folderLS()
+	{
+
+		do {
+			// Creates an array in which we will store the names of files and directories
+			String[] pathnames = null;
+			//user input to see which folder they want to see in
+			System.out.printf("where is the file directory you want to look in ?\nEx. C:\\Users\\Myname\\fileName.txt\n");
+			String fileLS = input.nextLine(); 
+
+			// Creates a new File instance by converting the given pathname string
+			// into an abstract pathname
+			File f = new File(fileLS);
+
+			// Populates the array with names of files and directories
+			pathnames = f.list();
+
+			// For each pathname in the pathnames array
+			for (String pathname : pathnames) 
+			{
+				// Print the names of files and directories
+				System.out.println(pathname);
+			}
+
+			System.out.printf("Do you want to look into any other folders ? \"yes\" or \"no\" \n");
+
+			choice = input.nextLine();
+
+			switch(choice)
+			{
+			case "yes":
+				loop = true;
+				break;
+			case "Yes":
+				loop = true;
+				break;
+			case "no":
+				loop = false;
+				break;
+			case "No":
+				loop = false;
+				break;
+			default:
+				System.out.printf("wrong input please type \"yes\" or \"no\"");
+				break;
+			}
+		}while(loop != false);
+
+	}
+
+}
